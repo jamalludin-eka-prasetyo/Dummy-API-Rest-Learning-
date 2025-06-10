@@ -12,7 +12,7 @@
    <followRedirects>true</followRedirects>
    <httpBody></httpBody>
    <httpBodyContent>{
-  &quot;text&quot;: &quot;{\n    \&quot;name\&quot;: \&quot;test1234\&quot;,\n    \&quot;salary\&quot;: \&quot;12000\&quot;,\n    \&quot;age\&quot;: \&quot;23\&quot;\n}&quot;,
+  &quot;text&quot;: &quot;{\n    \&quot;name\&quot;: \&quot;${name}\&quot;,\n    \&quot;salary\&quot;: \&quot;${salary}\&quot;,\n    \&quot;age\&quot;: \&quot;${age}\&quot;\n}&quot;,
   &quot;contentType&quot;: &quot;application/json&quot;,
   &quot;charset&quot;: &quot;UTF-8&quot;
 }</httpBodyContent>
@@ -30,7 +30,7 @@
    <migratedVersion>5.4.1</migratedVersion>
    <path></path>
    <restRequestMethod>POST</restRequestMethod>
-   <restUrl>${GlobalVariable.base_url}/create</restUrl>
+   <restUrl>${base_url}/create</restUrl>
    <serviceType>RESTful</serviceType>
    <soapBody></soapBody>
    <soapHeader></soapHeader>
@@ -39,6 +39,34 @@
    <soapServiceFunction></soapServiceFunction>
    <socketTimeout>-1</socketTimeout>
    <useServiceInfoFromWsdl>true</useServiceInfoFromWsdl>
+   <variables>
+      <defaultValue>GlobalVariable.base_url</defaultValue>
+      <description></description>
+      <id>3acee916-fccd-4181-8daf-39830800365f</id>
+      <masked>false</masked>
+      <name>base_url</name>
+   </variables>
+   <variables>
+      <defaultValue>'malls'</defaultValue>
+      <description></description>
+      <id>10c7ae93-33ba-48d6-a7a4-5d070edaad90</id>
+      <masked>false</masked>
+      <name>name</name>
+   </variables>
+   <variables>
+      <defaultValue>'20000000'</defaultValue>
+      <description></description>
+      <id>91b870e3-7373-467a-b2f8-eaf84868bd3a</id>
+      <masked>false</masked>
+      <name>salary</name>
+   </variables>
+   <variables>
+      <defaultValue>'29'</defaultValue>
+      <description></description>
+      <id>91106df5-c64c-42fa-b48e-bb1c1bbc95f8</id>
+      <masked>false</masked>
+      <name>age</name>
+   </variables>
    <verificationScript>import static org.assertj.core.api.Assertions.*
 
 import com.kms.katalon.core.testobject.RequestObject
@@ -55,6 +83,13 @@ ResponseObject response = WSResponseManager.getInstance().getCurrentResponse()
 
 WS.verifyResponseStatusCode(response, 200)
 
-assertThat(response.getStatusCode()).isEqualTo(200)</verificationScript>
+assertThat(response.getStatusCode()).isEqualTo(200)
+
+
+ResponseObject response = WSResponseManager.getInstance().getCurrentResponse()
+
+
+
+</verificationScript>
    <wsdlAddress></wsdlAddress>
 </WebServiceRequestEntity>
