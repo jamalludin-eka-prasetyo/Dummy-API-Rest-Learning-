@@ -9,4 +9,9 @@
       <initValue>'https://dummy.restapiexample.com/api/v1'</initValue>
       <name>base_url</name>
    </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>5</initValue>
+      <name>id</name>
+   </GlobalVariableEntity>
 </GlobalVariableEntities>
