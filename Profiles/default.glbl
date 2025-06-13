@@ -11,7 +11,7 @@
    </GlobalVariableEntity>
    <GlobalVariableEntity>
       <description></description>
-      <initValue>5</initValue>
+      <initValue>1</initValue>
       <name>id</name>
    </GlobalVariableEntity>
 </GlobalVariableEntities>

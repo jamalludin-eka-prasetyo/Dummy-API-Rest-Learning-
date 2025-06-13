@@ -18,7 +18,9 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-def createNewEmployee = WS.sendRequest(findTestObject('Object Repository/POST - Create New Employee', [('name') : 'Malls', ('salary') : '2000000', ('age') : '29']))
+// create a new employee
+def createNewEmployee = WS.sendRequest(findTestObject('Object Repository/POST - Create New Employee', [('name') : 'Malls'
+            , ('salary') : '2000000', ('age') : '29']))
 
 def slurper = new groovy.json.JsonSlurper()
 def responseCreate = slurper.parseText(createNewEmployee.getResponseText())
@@ -28,17 +30,36 @@ def nameResponse = responseCreate.data.name
 def sallaryResponse = responseCreate.data.salary
 def ageResponse = responseCreate.data.age
 int idResponse = responseCreate.data.id as Integer
-
 if (statusResponse == 'success') {
-	if (createNewEmployee.getStatusCode() == 200) {
-		KeywordUtil.logInfo('Message = ' + messageResponse)
-		KeywordUtil.logInfo('Name = ' + nameResponse)
-		KeywordUtil.logInfo('Sallary = ' + sallaryResponse)
-		KeywordUtil.logInfo('Age = ' + ageResponse)
-		KeywordUtil.logInfo('ID = ' + idResponse)
-		GlobalVariable.id = idResponse
-	}
+    if (createNewEmployee.getStatusCode() == 200) {
+        KeywordUtil.logInfo('Message = ' + messageResponse)
+        KeywordUtil.logInfo('Name = ' + nameResponse)
+        KeywordUtil.logInfo('Sallary = ' + sallaryResponse)
+        KeywordUtil.logInfo('Age = ' + ageResponse)
+        KeywordUtil.logInfo('ID = ' + idResponse)
+        GlobalVariable.id = idResponse
+    }
 } else {
     KeywordUtil.markFailed('Gagal Create a New Employee')
 }
 
+Thread.sleep(1000)
+// Search Employee by ID
+def searchEmploById = WS.sendRequest(findTestObject('GET - Single Employee', [('base_url') : GlobalVariable.base_url, ('id') : GlobalVariable.id]))
+//def responseSearchEmployee = slurper.parseText(searchEmploById.getResponseText())
+
+(searchEmploById.getStatusCode() == 200 ) ? print("Respones nya adalah" +searchEmploById.getStatusCode() ) : print("lanjutkan")
+//
+//print(idResponse)
+//def employeeName = responseSearchEmployee.data.employee_name
+//def employeeSallary = responseSearchEmployee.data.employee_salary
+//def employeeAge = responseSearchEmployee.data.employee_age
+//def employeeImgProfile = responseSearchEmployee.data.profil_image
+//int idEmployee = responseSearchEmployee.data.id as Integer
+//
+//if (idEmployee == idResponse) {
+//	print("Benar")
+//} else {
+//	print ("Salah")
+//}
+//
